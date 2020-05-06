@@ -26,8 +26,8 @@ def index():
     return "Project 1: TODO"
     # return render_template("index.html")
 
-@app.route("/template")
-def template():
-    """lists something """
-    something = db.execute("SELECT * FROM a_table").fetchall
-    return render_template("template.html" something=something)
+#@app.route("/template")
+#def template():
+#    """lists something """
+#    something = db.execute("SELECT * FROM a_table").fetchall
+ #   return render_template("template.html" something=something)
