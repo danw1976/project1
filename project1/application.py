@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session
+from flask import Flask, session, render_template, url_for, request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -21,10 +21,13 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 
-@app.route("/")
+@app.route("/", methods=['POST'])
 def index():
-    return "Project 1: TODO"
-    # return render_template("index.html")
+    # perhaps this should be the registration page
+    # get username and password from form post
+    # search the database for this user
+    # if no user then send to registration or login page
+    return render_template("index.html")
 
 #@app.route("/template")
 #def template():
