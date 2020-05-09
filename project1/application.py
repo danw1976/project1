@@ -21,13 +21,20 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 
-@app.route("/", methods=['POST'])
+@app.route("/", methods=['GET','POST'])
 def index():
     # perhaps this should be the registration page
     # get username and password from form post
     # search the database for this user
     # if no user then send to registration or login page
-    return render_template("index.html")
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        db.execute("SELECT id FROM users WHERE (username=username) and (password=password).fetchone()
+        print(username)
+        print(password)
+    else:
+        return render_template("index.html")
 
 #@app.route("/template")
 #def template():
