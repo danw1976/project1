@@ -1,12 +1,21 @@
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
-	username 
-	password
-}
+	username VARCHAR NOT NULL,
+	password VARCHAR NOT NULL
+)
 
-CREATE TABLE books {
-	title 
-	author
-	year
-	review_count
-	average_score
+CREATE TABLE books (
+	isbn INT PRIMARY KEY, 
+	title VARCHAR NOT NULL, 
+	author VARCHAR NOT NULL,
+	year VARCHAR NOT NULL
+
+)
+
+CREATE TABLE reviews (
+	id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL,
+	book_isbn INT NOT NULL,
+	rating INT NOT NULL,
+	review_text VARCHAR NOT NULL
+)

@@ -30,9 +30,9 @@ def index():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db.execute("SELECT id FROM users WHERE (username=username) and (password=password).fetchone()
-        print(username)
-        print(password)
+        user = db.execute("SELECT id FROM users WHERE username = :username" AND password = :password, {"username": username}).fetchone() and (password=password).fetchone()
+        if user is None:
+            return render_template("registration.html")
     else:
         return render_template("index.html")
 
