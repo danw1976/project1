@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<h2>Registration</h2>
+{% endblock %}
+
+{%block body %}
+
+<h3>Add username and password</h3>
+
+<form method="POST" action="{{ url_for('index') }}">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password</label>
+        <input type="text" id="password" name="name">
+        <input type="submit" value="Submit">
+</form>
+{% endblock %}
+

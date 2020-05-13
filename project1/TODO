@@ -1,0 +1,4 @@
+# Add registration link to login page
+# Pass username to welcome page so user can be 'welcomed'
+# Registration page should allow creation of new user in database
+# Once a user is logged in add them to the session variable - other logins can then be tested against this variable so there can't be multiple logins
