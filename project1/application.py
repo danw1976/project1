@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, flash, session, render_template, url_for, request
+from flask import Flask, flash, session, render_template, url_for, request, redirect
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -33,6 +33,8 @@ def index():
         else:
             return render_template("welcome.html", user=username)
     else:
+
+        print(db.execute("SELECT * FROM users").fetchall())
         return render_template("index.html")
 
 
@@ -49,9 +51,10 @@ def registration():
         # does the password already exist?
         user = db.execute("SELECT id FROM users WHERE username = :username AND password = :password", {'username': username, 'password': password}).fetchone()
         if user is None:
-            db.execute("INSERT INTO users (username, password) VALUES (:username, :password", {'username': username, 'password': password})
+            print('No user')
+            db.execute("INSERT INTO users (username, password) VALUES (:username, :password)", {'username': username, 'password': password})
             flash('You were successfully registered')
-            return render_template("welcome.html", user=username)
+            return redirect(url_for("welcome"))
         else:
             flash('Account already exists')
 
