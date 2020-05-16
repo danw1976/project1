@@ -33,8 +33,9 @@ def index():
         else:
             return render_template("welcome.html", user=username)
     else:
-
-        print(db.execute("SELECT * FROM users").fetchall())
+        users = db.execute("SELECT * FROM users").fetchall()
+        for user in users:
+            print(user)
         return render_template("index.html")
 
 
@@ -45,18 +46,23 @@ def welcome():
 
 @app.route('/registration', methods=['GET','POST'])
 def registration():
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # does the password already exist?
+
+        # does the account user already exist?
         user = db.execute("SELECT id FROM users WHERE username = :username AND password = :password", {'username': username, 'password': password}).fetchone()
+        # if not then create user and go to welcome page
         if user is None:
-            print('No user')
             db.execute("INSERT INTO users (username, password) VALUES (:username, :password)", {'username': username, 'password': password})
+            db.commit()
             flash('You were successfully registered')
             return redirect(url_for("welcome"))
+        # if it does then flash message and return to login page
         else:
             flash('Account already exists')
+            return redirect(url_for('index'))
 
     return render_template("registration.html")
 
