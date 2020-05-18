@@ -1,4 +1,6 @@
 # Sort out flash messages
+# this requires checking which portion of the layout template will be rendered each time
+# may need to re-organise where the flash_messages function is called - eg within the body block
 # Pass username to welcome page so user can be 'welcomed'
 # Once a user is logged in add them to the session variable - other logins can then be tested against this variable so there can't be multiple logins
 # Add logout ability

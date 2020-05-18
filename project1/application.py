@@ -58,11 +58,11 @@ def registration():
             db.execute("INSERT INTO users (username, password) VALUES (:username, :password)", {'username': username, 'password': password})
             db.commit()
             flash('You were successfully registered')
+            print('success')
             return redirect(url_for("welcome"))
-        # if it does then flash message and return to login page
         else:
             flash('Account already exists')
-            return redirect(url_for('index'))
+            flash('Please try again')
 
     return render_template("registration.html")
 
